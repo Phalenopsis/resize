@@ -16,9 +16,11 @@ function crop(string $img, int $marginPercent): void
 
     $im = imagecreatefromjpeg($img);
     //$size = min(imagesx($im), imagesy($im));
-    $margin = imagesx($im) * $marginPercent / 100;
-    $size = imagesx($im) - 2 * $margin;
-    $im2 = imagecrop($im, ['x' => $margin, 'y' => $margin, 'width' => $size, 'height' => $size]);
+    $marginWidth = imagesx($im) * $marginPercent / 100;
+    $marginHeight = imagesx($im) * $marginPercent / 100;
+    $newWidth = imagesx($im) - 2 * $marginWidth;
+    $newHeight = imagesy($im) - 2 * $marginHeight;
+    $im2 = imagecrop($im, ['x' => $marginWidth, 'y' => $marginHeight, 'width' => $newWidth, 'height' => $newHeight]);
     if ($im2 !== FALSE) {
         imagejpeg($im2, $newName, 100);
         imagedestroy($im2);
