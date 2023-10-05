@@ -28,10 +28,10 @@ function crop(string $img, int $marginPercent): void
     imagedestroy($im);
 }
 
-function cropAll(array $images): void
+function cropAll(array $images, int $value): void
 {
     foreach ($images as $image) {
-        crop($image, 30);
+        crop($image, $value);
     }
 }
 

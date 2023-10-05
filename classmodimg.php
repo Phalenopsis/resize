@@ -20,7 +20,7 @@ class ModImg
 
     function __construct($options)
     {
-        $this->options = $options;
+        $this->options = getopt($options->getShortOptions(), $options->getLongOptions());
         $this->parseOptions();
     }
 
@@ -123,7 +123,7 @@ class ModImg
             if (count($cropValues) > 1) {
                 $this->exitHelpMessage($this->getHelp());
             } else {
-                cropAll(getJPGOnDir(getFilesOnDir($this->getDirectory())));
+                cropAll(getJPGOnDir(getFilesOnDir($this->getDirectory())), $cropValues[0]);
                 $this->setCropDirectory();
             }
         }
